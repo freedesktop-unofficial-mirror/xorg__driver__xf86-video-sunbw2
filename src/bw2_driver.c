@@ -52,8 +52,8 @@ static void	BW2AdjustFrame(int scrnIndex, int x, int y, int flags);
 
 /* Optional functions */
 static void	BW2FreeScreen(int scrnIndex, int flags);
-static int	BW2ValidMode(int scrnIndex, DisplayModePtr mode, Bool verbose,
-			     int flags);
+static ModeStatus BW2ValidMode(int scrnIndex, DisplayModePtr mode,
+			       Bool verbose, int flags);
 
 void BW2Sync(ScrnInfoPtr pScrn);
 
@@ -72,7 +72,7 @@ void BW2Sync(ScrnInfoPtr pScrn);
  * an upper-case version of the driver name.
  */
 
-DriverRec SUNBW2 = {
+_X_EXPORT DriverRec SUNBW2 = {
     VERSION,
     BW2_DRIVER_NAME,
     BW2Identify,
@@ -96,7 +96,7 @@ static XF86ModuleVersionInfo sunbw2VersRec =
 	MODULEVENDORSTRING,
 	MODINFOSTRING1,
 	MODINFOSTRING2,
-	XF86_VERSION_CURRENT,
+	XORG_VERSION_CURRENT,
 	BW2_MAJOR_VERSION, BW2_MINOR_VERSION, BW2_PATCHLEVEL,
 	ABI_CLASS_VIDEODRV,
 	ABI_VIDEODRV_VERSION,
@@ -104,7 +104,7 @@ static XF86ModuleVersionInfo sunbw2VersRec =
 	{0,0,0,0}
 };
 
-XF86ModuleData sunbw2ModuleData = { &sunbw2VersRec, bw2Setup, NULL };
+_X_EXPORT XF86ModuleData sunbw2ModuleData = { &sunbw2VersRec, bw2Setup, NULL };
 
 pointer
 bw2Setup(pointer module, pointer opts, int *errmaj, int *errmin)
@@ -555,7 +555,7 @@ BW2FreeScreen(int scrnIndex, int flags)
 /* Checks if a mode is suitable for the selected chipset. */
 
 /* Optional */
-static int
+static ModeStatus
 BW2ValidMode(int scrnIndex, DisplayModePtr mode, Bool verbose, int flags)
 {
     if (mode->Flags & V_INTERLACE)

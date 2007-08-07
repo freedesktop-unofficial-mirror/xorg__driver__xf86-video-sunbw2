@@ -63,9 +63,9 @@ void BW2Sync(ScrnInfoPtr pScrn);
 #define BW2_VERSION 4000
 #define BW2_NAME "SUNBW2"
 #define BW2_DRIVER_NAME "sunbw2"
-#define BW2_MAJOR_VERSION 1
-#define BW2_MINOR_VERSION 1
-#define BW2_PATCHLEVEL 0
+#define BW2_MAJOR_VERSION PACKAGE_VERSION_MAJOR
+#define BW2_MINOR_VERSION PACKAGE_VERSION_MINOR
+#define BW2_PATCHLEVEL PACKAGE_VERSION_PATCHLEVEL
 
 /* 
  * This contains the functions needed by the server after loading the driver

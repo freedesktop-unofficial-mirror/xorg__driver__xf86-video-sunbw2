@@ -18,21 +18,25 @@
 #  IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 #  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
-# Process this file with autoconf to produce a configure script
+dnl Process this file with autoconf to produce a configure script
 
+# Initialize Autoconf
 AC_PREREQ(2.57)
 AC_INIT([xf86-video-sunbw2],
         1.1.0,
         [https://bugs.freedesktop.org/enter_bug.cgi?product=xorg],
         xf86-video-sunbw2)
-
 AC_CONFIG_SRCDIR([Makefile.am])
-AM_CONFIG_HEADER([config.h])
+AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_AUX_DIR(.)
 
+# Initialize Automake
 AM_INIT_AUTOMAKE([foreign dist-bzip2])
-
 AM_MAINTAINER_MODE
+
+# Initialize libtool
+AC_DISABLE_STATIC
+AC_PROG_LIBTOOL
 
 # Require xorg-macros: XORG_DEFAULT_OPTIONS
 m4_ifndef([XORG_MACROS_VERSION],
@@ -41,8 +45,6 @@ XORG_MACROS_VERSION(1.3)
 XORG_DEFAULT_OPTIONS
 
 # Checks for programs.
-AC_DISABLE_STATIC
-AC_PROG_LIBTOOL
 AC_PROG_CC
 
 AH_TOP([#include "xorg-server.h"])
